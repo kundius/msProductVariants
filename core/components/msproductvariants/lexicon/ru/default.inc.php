@@ -1,0 +1,22 @@
+<?php
+$_lang['msproductvariants'] = 'msProductVariants';
+$_lang['msproductvariants_tab_title'] = 'Варианты товара';
+$_lang['msproductvariants_variants_remove'] = 'Удалить варианты';
+$_lang['msproductvariants_variant_remove'] = 'Удалить вариант';
+$_lang['msproductvariants_variants_remove_confirm'] = 'Удалить варианты?';
+$_lang['msproductvariants_variant_remove_confirm'] = 'Удалить вариант?';
+$_lang['msproductvariants_variant_id'] = 'ID';
+$_lang['msproductvariants_variant_options'] = 'Опции';
+$_lang['msproductvariants_variant_values'] = 'Значения';
+$_lang['msproductvariants_variant_active'] = 'Активен';
+$_lang['msproductvariants_grid_actions'] = 'Действия';
+$_lang['msproductvariants_varinat_create'] = 'Создать';
+$_lang['msproductvariants_variant_update'] = 'Изменить';
+$_lang['msproductvariants_variants_enable'] = 'Включить';
+$_lang['msproductvariants_variant_enable'] = 'Включить';
+$_lang['msproductvariants_variants_disable'] = 'Отключить';
+$_lang['msproductvariants_variant_disable'] = 'Отключить';
+$_lang['msproductvariants_variants_remove'] = 'Удалить';
+$_lang['msproductvariants_variant_remove'] = 'Удалить';
+$_lang['msproductvariants_variant_err_ns'] = 'Не указано';
+$_lang['msproductvariants_variant_err_nf'] = 'Не найдено';
