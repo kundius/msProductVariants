@@ -14,25 +14,81 @@ msProductVariants.window.CreateVariant = function (config) {
             key: Ext.EventObject.ENTER, shift: true, fn: function () {
                 this.submit()
             }, scope: this
-        }]
+        }],
+        // listeners: {
+        //     beforeSubmit: {
+        //         fn: function (a, b, c) {
+        //             console.log(a, b, c);
+        //             return false;
+        //         }, scope: this
+        //     }
+        // }
     });
     msProductVariants.window.CreateVariant.superclass.constructor.call(this, config);
 };
 Ext.extend(msProductVariants.window.CreateVariant, MODx.Window, {
 
     getFields: function (config) {
+        var values = Ext.getCmp('modx-panel-resource').getForm().getValues();
+        var fieldset = new Ext.form.FieldSet();
+        fieldset.add({
+            xtype: 'combo',
+            name: 'color[]',
+            fieldLabel: _('ms2_product_color'),
+            triggerAction: 'all',
+            store: values['color[]'],
+            listeners: {
+                change: {
+                    fn: this.onChangeOption,
+                    scope: this
+                }
+            }
+        });
+        Ext.each(miniShop2.config.option_fields, function(item, index) {
+            if (item.type == "combo-options") {
+                var key = 'options-' + item.key + '[]';
+                fieldset.add({
+                    xtype: 'combo',
+                    name: key,
+                    fieldLabel: item.caption,
+                    triggerAction: 'all',
+                    store: values[key],
+                    listeners: {
+                        change: {
+                            fn: this.onChangeOption,
+                            scope: this
+                        }
+                    }
+                });
+            }
+        });
+
         return [{
+            xtype: 'hidden',
+            name: 'product_id',
+            id: config.id + '-product_id',
+            allowBlank: false,
+        }, {
+            xtype: 'tabpanel',
+            activeTab: 0,
+            items: [{
+                title: _('msproductvariants_variant_options'),
+                items: [fieldset]
+            },{
+                title: _('msproductvariants_variant_values'),
+                items: [{
+                    xtype: 'textarea',
+                    fieldLabel: _('msproductvariants_variant_values'),
+                    name: 'values',
+                    id: config.id + '-values',
+                    height: 150
+                }]
+            }]
+        }, {
             xtype: 'textarea',
-            fieldLabel: _('msproductvariants_variant_options'),
             name: 'options',
             id: config.id + '-options',
             allowBlank: false,
-        }, {
-            xtype: 'textarea',
-            fieldLabel: _('msproductvariants_variant_values'),
-            name: 'values',
-            id: config.id + '-values',
-            height: 150
         }, {
             xtype: 'xcheckbox',
             boxLabel: _('msproductvariants_variant_active'),
@@ -45,6 +101,9 @@ Ext.extend(msProductVariants.window.CreateVariant, MODx.Window, {
     loadDropZones: function () {
     }
 
+    onChangeOption: function (a, b) {
+        console.log(a, b);
+    }
 });
 Ext.reg('msproductvariants-window-create', msProductVariants.window.CreateVariant);
 

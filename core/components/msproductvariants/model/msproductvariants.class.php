@@ -13,8 +13,8 @@ class msProductVariants
     function __construct(modX &$modx, array $config = [])
     {
         $this->modx =& $modx;
-        $corePath = MODX_CORE_PATH . 'components/msproductvariants/';
-        $assetsUrl = MODX_ASSETS_URL . 'components/msproductvariants/';
+        $corePath = $this->modx->getOption('msproductvariants_core_path', $config, $this->modx->getOption('core_path') . 'components/msproductvariants/');
+        $assetsUrl = $this->modx->getOption('msproductvariants_assets_url', $config, $this->modx->getOption('assets_url') . 'components/msproductvariants/');
 
         $this->config = array_merge([
             'corePath' => $corePath,

@@ -1,7 +1,7 @@
 <?php
 
 if (!defined('MODX_CORE_PATH')) {
-    define('MODX_CORE_PATH', dirname(dirname(dirname(dirname(__FILE__)))) . '/core/');
+    define('MODX_CORE_PATH', dirname(dirname(dirname(__FILE__))) . '/core/');
 }
 
 return [

@@ -69,7 +69,10 @@ Ext.extend(msProductVariants.grid.Variants, MODx.grid.Grid, {
             }
         });
         w.reset();
-        w.setValues({active: true});
+        w.setValues({
+            active: true,
+            product_id: msProductVariants.product_id
+        });
         w.show(e.target);
     },
 
