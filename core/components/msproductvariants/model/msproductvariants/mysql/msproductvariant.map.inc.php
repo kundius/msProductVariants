@@ -11,6 +11,7 @@ $xpdo_meta_map['msProductVariant']= array (
   'fields' => 
   array (
     'product_id' => NULL,
+    'name' => NULL,
     'options' => '',
     'values' => '',
     'active' => 1,
@@ -22,6 +23,13 @@ $xpdo_meta_map['msProductVariant']= array (
       'dbtype' => 'int',
       'precision' => '12',
       'phptype' => 'number',
+      'null' => false,
+    ),
+    'name' => 
+    array (
+      'dbtype' => 'varchar',
+      'precision' => '255',
+      'phptype' => 'string',
       'null' => false,
     ),
     'options' => 

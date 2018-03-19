@@ -186,7 +186,7 @@ Ext.extend(msProductVariants.grid.Variants, MODx.grid.Grid, {
     },
 
     getFields: function () {
-        return ['id', 'options', 'values', 'active', 'actions'];
+        return ['id', 'name', 'active', 'actions'];
     },
 
     getColumns: function () {
@@ -196,14 +196,9 @@ Ext.extend(msProductVariants.grid.Variants, MODx.grid.Grid, {
             sortable: true,
             width: 70
         }, {
-            header: _('msproductvariants_variant_options'),
-            dataIndex: 'options',
+            header: _('msproductvariants_variant_name'),
+            dataIndex: 'name',
             sortable: true,
-            width: 250,
-        }, {
-            header: _('msproductvariants_variant_values'),
-            dataIndex: 'values',
-            sortable: false,
             width: 250,
         }, {
             header: _('msproductvariants_variant_active'),

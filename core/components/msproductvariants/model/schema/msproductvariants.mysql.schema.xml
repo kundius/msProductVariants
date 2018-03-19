@@ -4,6 +4,7 @@
 
     <object class="msProductVariant" table="msproductvariants" extends="xPDOSimpleObject">
         <field key="product_id" dbtype="int" precision="12" phptype="number" null="false"/>
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="false"/>
         <field key="options" dbtype="text" phptype="text" null="true" default=""/>
         <field key="values" dbtype="text" phptype="text" null="true" default=""/>
         <field key="active" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="1"/>
