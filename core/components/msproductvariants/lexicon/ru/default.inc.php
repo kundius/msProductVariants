@@ -22,3 +22,4 @@ $_lang['msproductvariants_variant_err_ns'] = 'Не указано';
 $_lang['msproductvariants_variant_err_nf'] = 'Не найдено';
 $_lang['msproductvariants_variant_create'] = 'Создать вариант';
 $_lang['msproductvariants_variant_name'] = 'Название';
+$_lang['msproductvariants_add_field'] = 'Добавить поле';

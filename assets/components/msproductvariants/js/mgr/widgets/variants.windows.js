@@ -20,61 +20,7 @@ msProductVariants.window.CreateVariant = function (config) {
 };
 Ext.extend(msProductVariants.window.CreateVariant, MODx.Window, {
 
-    getValues: function () {
-
-    },
-
-    getOptions: function () {
-        var self = this;
-        var values = Ext.getCmp('modx-panel-resource').getForm().getValues();
-        var items = [];
-        items.push({
-            xtype: 'combo',
-            name: 'color[]',
-            fieldLabel: _('ms2_product_color'),
-            triggerAction: 'all',
-            store: values['color[]'],
-            listeners: {
-                change: {
-                    fn: self.onChangeOption,
-                    scope: self
-                }
-            }
-        });
-        Ext.each(miniShop2.config.option_fields, function(item, index) {
-            if (item.type == "combo-options") {
-                var key = 'options-' + item.key + '[]';
-                items.push({
-                    xtype: 'combo',
-                    name: key,
-                    fieldLabel: item.caption,
-                    triggerAction: 'all',
-                    store: values[key],
-                    listeners: {
-                        change: {
-                            fn: self.onChangeOption,
-                            scope: self
-                        }
-                    }
-                });
-            }
-        });
-        return items;
-    },
-
     getFields: function (config) {
-        this.optionsInput = new Ext.form.Hidden({
-            name: 'options',
-            id: config.id + '-options',
-            allowBlank: false
-        });
-
-        this.valuesInput = new Ext.form.Hidden({
-            name: 'values',
-            id: config.id + '-values',
-            allowBlank: false
-        });
-
         return [{
             xtype: 'hidden',
             name: 'product_id',
@@ -115,43 +61,32 @@ Ext.extend(msProductVariants.window.CreateVariant, MODx.Window, {
             items: [{
                 title: _('msproductvariants_variant_options'),
                 layout: 'form',
-                // defaults: {
-                //     msgTarget: 'under'
-                // },
-                items: this.getOptions()
+                autoWidth: true,
+                height: 400,
+                items: [{
+                    xtype: 'msproductvariants-panel-options',
+                    inputConfig: {
+                        name: 'options',
+                        id: config.id + '-options',
+                        allowBlank: false
+                    }
+                }]
             }, {
                 title: _('msproductvariants_variant_values'),
                 layout: 'form',
-                // defaults: {
-                //     msgTarget: 'under'
-                // },
-                items: this.getValues()
+                autoWidth: true,
+                height: 400,
+                items: [{
+                    xtype: 'msproductvariants-panel-values',
+                    inputConfig: {
+                        name: 'values',
+                        id: config.id + '-values',
+                        allowBlank: false
+                    }
+                }]
             }]
-        }, this.optionsInput, this.valuesInput];
+        }];
     },
-
-    loadDropZones: function () {
-    },
-
-    setComposite: function (input, name, value) {
-        var data = input.getValue();
-        if (data) {
-            data = Ext.util.JSON.decode(data);
-        } else {
-            data = {};
-        }
-        data[name] = value;
-        data = Ext.util.JSON.encode(data);
-        input.setValue(data);
-    },
-
-    onChangeOption: function (combo) {
-        this.setComposite(this.optionsInput, combo.name, combo.value);
-    },
-
-    onChangeValue: function (combo) {
-        this.setComposite(this.valuesInput, combo.name, combo.value);
-    }
 });
 Ext.reg('msproductvariants-window-create', msProductVariants.window.CreateVariant);
 
@@ -202,9 +137,6 @@ Ext.extend(msProductVariants.window.UpdateVariant, MODx.Window, {
             id: config.id + '-active',
         }];
     },
-
-    loadDropZones: function () {
-    }
 
 });
 Ext.reg('msproductvariants-window-update', msProductVariants.window.UpdateVariant);

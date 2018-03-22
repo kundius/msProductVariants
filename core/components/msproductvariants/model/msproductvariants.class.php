@@ -24,7 +24,7 @@ class msProductVariants
             'connectorUrl' => $assetsUrl . 'connector.php',
             'assetsUrl' => $assetsUrl,
             'cssUrl' => $assetsUrl . 'css/',
-            'jsUrl' => $assetsUrl . 'js/',
+            'jsUrl' => $assetsUrl . 'js/'
         ], $config);
 
         $this->modx->addPackage('msproductvariants', $this->config['modelPath']);
@@ -43,11 +43,15 @@ class msProductVariants
         $data_js = preg_replace(array('/^\n/', '/\t{6}/'), '', '
 			msProductVariants.config.connector_url = "' . $this->config['connectorUrl'] . '";
 			msProductVariants.product_id = ' . $sp['id'] . ';
+			msProductVariants.main_fields = ' . $this->modx->getOption('msproductvariants_main_fields', null, '[]') . ';
+			msProductVariants.thumb_field = ' . $this->modx->getOption('msproductvariants_thumb_field', null, 0) . ';
+			msProductVariants.tv_fields = ' . $this->modx->getOption('msproductvariants_tv_fields', null, '[]') . ';
 		');
 		$this->modx->regClientStartupScript("<script type=\"text/javascript\">\n" . $data_js . "\n</script>", true);
         $this->modx->controller->addJavascript($this->config['jsUrl'] . 'mgr/msproductvariants.js');
         $this->modx->controller->addJavascript($this->config['jsUrl'] . 'mgr/misc/utils.js');
         $this->modx->controller->addJavascript($this->config['jsUrl'] . 'mgr/misc/combo.js');
+        $this->modx->controller->addJavascript($this->config['jsUrl'] . 'mgr/widgets/variants.panels.js');
         $this->modx->controller->addJavascript($this->config['jsUrl'] . 'mgr/widgets/variants.windows.js');
         $this->modx->controller->addJavascript($this->config['jsUrl'] . 'mgr/widgets/variants.grid.js');
         $this->modx->controller->addJavascript($this->config['jsUrl'] . 'mgr/widgets/product.tab.js');

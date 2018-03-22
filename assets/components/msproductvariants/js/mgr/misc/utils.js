@@ -1,3 +1,15 @@
+msProductVariants.utils.setComposite = function (input, name, value) {
+    var data = input.getValue();
+    if (data) {
+        data = Ext.util.JSON.decode(data);
+    } else {
+        data = {};
+    }
+    data[name] = value;
+    data = Ext.util.JSON.encode(data);
+    input.setValue(data);
+};
+
 msProductVariants.utils.renderBoolean = function (value) {
     return value
         ? String.format('<span class="green">{0}</span>', _('yes'))
